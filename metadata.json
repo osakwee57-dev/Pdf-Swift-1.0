@@ -1,0 +1,7 @@
+{
+  "name": "PDF Swift1.0",
+  "description": "A comprehensive client-side PDF utility for scanning documents via camera, converting text, and turning photos into professional PDFs with integrated OCR and sharing capabilities.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
