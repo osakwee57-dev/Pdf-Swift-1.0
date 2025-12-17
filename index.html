@@ -3,8 +3,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PDF Swift</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>PDF Swift | Secure On-Device PDF Tools</title>
+  <meta name="description" content="Professional PDF tools that work 100% locally in your browser. No APIs, no uploads, total privacy.">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
   <script src="https://unpkg.com/tesseract.js@v5.0.0/dist/tesseract.min.js"></script>
@@ -16,13 +17,18 @@
     "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
     "lucide-react": "https://esm.sh/lucide-react@^0.561.0",
     "pdf-lib": "https://esm.sh/pdf-lib@^1.17.1",
-    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2",
-    "vite": "https://esm.sh/vite@^7.3.0"
+    "vite": "https://esm.sh/vite@^7.3.0",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2"
   }
 }
 </script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+  body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+  .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+</style>
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans">
+<body class="bg-[#F8FAFC] text-slate-900 overflow-x-hidden">
   <div id="root"></div>
 </body>
 </html>

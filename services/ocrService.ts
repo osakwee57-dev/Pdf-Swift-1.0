@@ -3,33 +3,30 @@
 const Tesseract = window.Tesseract;
 
 /**
- * Extracts text from an image using Tesseract.js (Client-side WASM OCR).
- * This runs locally in the browser and does not call any external API.
+ * Executes OCR entirely in the client's browser using Tesseract.js WASM.
+ * No data is transmitted externally.
  */
 export const extractTextFromImage = async (imageSrc: string, onProgress?: (progress: number) => void): Promise<string> => {
   try {
-    // Initialize the worker with specific configuration for speed
+    // Re-initialize the worker for each scan to ensure memory is cleared on low-end devices
     const worker = await Tesseract.createWorker('eng', 1, {
       logger: (m: any) => {
         if (onProgress && m.status === 'recognizing text') {
           onProgress(m.progress);
         }
       },
-      // Using corePath and workerPath from CDN to ensure WASM is loaded
-      // but the actual execution is local.
       workerPath: 'https://unpkg.com/tesseract.js@v5.0.0/dist/worker.min.js',
       corePath: 'https://unpkg.com/tesseract.js-core@v5.0.0/tesseract-core.wasm.js',
     });
-    
-    // Perform recognition
+
     const { data: { text } } = await worker.recognize(imageSrc);
     
-    // Clean up
+    // Explicitly terminate to release browser memory back to the device
     await worker.terminate();
     
-    return text || "No text could be recognized.";
+    return text.trim() || "No clear text found in the image.";
   } catch (error) {
-    console.error('OCR Error:', error);
-    throw new Error('Local OCR failed. Please check image quality.');
+    console.error('Local OCR Execution Failed:', error);
+    throw new Error('On-device OCR failed. Ensure good lighting and clear focus.');
   }
 };
